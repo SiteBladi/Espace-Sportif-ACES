@@ -1,0 +1,632 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Association Espace Sportif ACES — آسفي</title>
+<meta name="description" content="جمعية الفضاء الرياضي ACES آسفي — مواي طاي، كيك بوكسينغ، كروسفيت، فيتنس، كمال أجسام، إيروبيك، ركوب دراجات. تأسست 2004، تجديد 2024.">
+<meta property="og:title" content="Association Espace Sportif ACES — آسفي">
+<meta property="og:description" content="8 رياضات تحت سقف واحد — أقدم النوادي الرياضية في آسفي. تأسست 2004.">
+<meta property="og:type" content="website">
+<meta property="og:image" content="aces-logo.jpg">
+<meta name="theme-color" content="#CC0000">
+<link rel="icon" href="aces-logo.jpg">
+<link href="https://fonts.googleapis.com/css2?family=Tajawal:wght@300;400;500;700;900&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box;}
+:root{
+  --black:#0A0A0A;--dark:#111;--dark2:#1A1A1A;--dark3:#222;
+  --red:#CC0000;--red2:#FF2020;--red3:#8B0000;
+  --white:#FFF;--gray:#999;--light:#CCC;--gold:#D4AF37;
+}
+html{scroll-behavior:smooth;}
+body{font-family:'Tajawal',sans-serif;background:var(--black);color:var(--white);overflow-x:hidden;}
+::-webkit-scrollbar{width:5px;}
+::-webkit-scrollbar-track{background:var(--dark);}
+::-webkit-scrollbar-thumb{background:linear-gradient(var(--red),var(--gold));border-radius:3px;}
+.page{display:none;}.page.active{display:block;}
+
+/* LOADER */
+#loader{position:fixed;inset:0;background:#0A0A0A;z-index:9999;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:20px;transition:opacity 0.6s;}
+#loader.hide{opacity:0;pointer-events:none;}
+.l-logo-wrap{position:relative;width:100px;height:100px;}
+.l-ring{position:absolute;inset:0;border-radius:50%;border:3px solid transparent;border-top-color:var(--red);border-right-color:var(--gold);animation:spin 1s linear infinite;}
+@keyframes spin{to{transform:rotate(360deg)}}
+.l-logo-inner{position:absolute;inset:6px;border-radius:50%;overflow:hidden;display:flex;align-items:center;justify-content:center;background:var(--dark2);}
+.l-logo-svg{font-size:36px;}
+.l-name{font-size:11px;letter-spacing:6px;color:var(--gray);text-transform:uppercase;}
+.l-bar{width:200px;height:2px;background:var(--dark2);border-radius:2px;overflow:hidden;}
+.l-fill{height:100%;background:linear-gradient(to left,var(--gold),var(--red));animation:fill 1.2s ease forwards;}
+@keyframes fill{0%{width:0}100%{width:100%}}
+
+/* NAV */
+nav{position:sticky;top:0;z-index:200;height:68px;background:rgba(10,10,10,0.97);backdrop-filter:blur(16px);border-bottom:1px solid rgba(204,0,0,0.2);display:flex;align-items:center;justify-content:space-between;padding:0 40px;gap:20px;}
+.nav-logo{display:flex;align-items:center;gap:12px;cursor:pointer;flex-shrink:0;}
+.nav-logo-icon{width:44px;height:44px;border-radius:50%;background:var(--dark2);border:2px solid rgba(204,0,0,0.4);display:flex;align-items:center;justify-content:center;font-size:20px;}
+.logo-text strong{font-size:13px;font-weight:800;color:var(--white);display:block;line-height:1.2;}
+.logo-text span{font-size:10px;color:var(--gray);}
+.nav-links{display:flex;list-style:none;}
+.nav-links a{color:var(--gray);font-size:13px;padding:0 14px;height:68px;display:flex;align-items:center;border-bottom:2px solid transparent;transition:all 0.25s;cursor:pointer;white-space:nowrap;}
+.nav-links a:hover,.nav-links a.act{color:var(--white);border-bottom-color:var(--red);}
+.nav-right{display:flex;align-items:center;gap:10px;}
+.btn-red{background:linear-gradient(135deg,var(--red),var(--red3));color:var(--white);padding:10px 20px;border:none;border-radius:4px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Tajawal',sans-serif;transition:all 0.3s;}
+.btn-red:hover{background:var(--red2);transform:translateY(-2px);box-shadow:0 8px 24px rgba(204,0,0,0.4);}
+.btn-outline{background:transparent;color:var(--white);padding:10px 20px;border:1px solid rgba(255,255,255,0.2);border-radius:4px;font-size:13px;font-weight:700;cursor:pointer;font-family:'Tajawal',sans-serif;transition:all 0.3s;}
+.btn-outline:hover{border-color:var(--red);color:var(--red);}
+.hamburger{display:none;flex-direction:column;gap:5px;cursor:pointer;padding:8px;border:none;background:none;}
+.hamburger span{width:24px;height:2px;background:var(--white);border-radius:2px;transition:all 0.3s;display:block;}
+.hamburger.open span:nth-child(1){transform:rotate(45deg) translate(5px,5px);}
+.hamburger.open span:nth-child(2){opacity:0;}
+.hamburger.open span:nth-child(3){transform:rotate(-45deg) translate(5px,-5px);}
+.mob-menu{display:none;position:fixed;top:68px;inset-inline:0;background:rgba(10,10,10,0.98);backdrop-filter:blur(16px);border-bottom:1px solid rgba(204,0,0,0.2);z-index:199;flex-direction:column;padding:16px 0;}
+.mob-menu.open{display:flex;}
+.mob-menu a{color:var(--gray);font-size:15px;padding:14px 32px;border-bottom:1px solid rgba(255,255,255,0.04);cursor:pointer;transition:all 0.2s;text-decoration:none;}
+.mob-menu a:hover{color:var(--white);background:rgba(204,0,0,0.06);}
+
+/* HERO */
+.hero{min-height:100vh;position:relative;overflow:hidden;display:flex;align-items:center;justify-content:center;padding:100px 40px 60px;text-align:center;}
+.hero-bg{position:absolute;inset:0;background:radial-gradient(ellipse 80% 60% at 50% 40%,rgba(139,0,0,0.25),transparent 70%),linear-gradient(180deg,#0A0A0A,#160000 50%,#0A0A0A);}
+.hero-grid{position:absolute;inset:0;background-image:linear-gradient(rgba(204,0,0,0.06) 1px,transparent 1px),linear-gradient(90deg,rgba(204,0,0,0.06) 1px,transparent 1px);background-size:60px 60px;animation:grid-drift 25s linear infinite;}
+@keyframes grid-drift{to{transform:translateY(60px)}}
+.hero-glow{position:absolute;width:600px;height:600px;border-radius:50%;background:radial-gradient(circle,rgba(204,0,0,0.15),transparent 70%);top:50%;left:50%;transform:translate(-50%,-50%);animation:glow 3s ease-in-out infinite;}
+@keyframes glow{0%,100%{opacity:0.4;transform:translate(-50%,-50%) scale(1);}50%{opacity:1;transform:translate(-50%,-50%) scale(1.1);}}
+.particles{position:absolute;inset:0;pointer-events:none;}
+.particle{position:absolute;width:2px;height:2px;border-radius:50%;background:var(--red);animation:pfloat linear infinite;opacity:0;}
+@keyframes pfloat{0%{transform:translateY(100vh);opacity:0;}10%{opacity:0.7;}90%{opacity:0.2;}100%{transform:translateY(-10vh);opacity:0;}}
+.hero-content{position:relative;z-index:2;max-width:900px;}
+.hero-logo{width:100px;height:100px;margin:0 auto 24px;animation:fade-up 0.8s 0.2s both;}
+.hero-badge{display:inline-flex;align-items:center;gap:8px;background:rgba(204,0,0,0.12);border:1px solid rgba(204,0,0,0.35);border-radius:40px;padding:8px 20px;font-size:12px;color:rgba(255,200,200,0.9);letter-spacing:3px;margin-bottom:24px;animation:fade-up 0.8s 0.4s both;}
+.hero-badge::before{content:'';width:6px;height:6px;border-radius:50%;background:var(--red);animation:blink 1.5s ease-in-out infinite;}
+@keyframes blink{0%,100%{opacity:1;}50%{opacity:0.2;}}
+.hero-h1{font-size:clamp(36px,7vw,80px);font-weight:900;line-height:1.05;margin-bottom:16px;animation:fade-up 0.8s 0.6s both;}
+.hero-h1 .w{color:var(--white);}
+.hero-h1 .r{color:var(--red);text-shadow:0 0 40px rgba(204,0,0,0.6);}
+.hero-h1 .o{-webkit-text-stroke:1.5px rgba(255,255,255,0.35);color:transparent;font-size:0.55em;letter-spacing:6px;display:block;}
+.hero-sub{font-size:clamp(14px,2vw,17px);color:var(--gray);line-height:1.9;margin-bottom:40px;animation:fade-up 0.8s 0.8s both;max-width:600px;margin-inline:auto;}
+.hero-btns{display:flex;gap:14px;justify-content:center;flex-wrap:wrap;animation:fade-up 0.8s 1s both;margin-bottom:60px;}
+.hero-btns .btn-red,.hero-btns .btn-outline{padding:14px 36px;font-size:15px;border-radius:6px;}
+.hero-stats{display:flex;justify-content:center;flex-wrap:wrap;animation:fade-up 0.8s 1.2s both;}
+.h-stat{text-align:center;padding:0 32px;border-left:1px solid rgba(255,255,255,0.08);}
+.h-stat:last-child{border-left:none;}
+.h-num{font-size:clamp(26px,4vw,46px);font-weight:900;background:linear-gradient(135deg,var(--red),var(--gold));-webkit-background-clip:text;-webkit-text-fill-color:transparent;background-clip:text;}
+.h-lbl{font-size:11px;color:var(--gray);letter-spacing:2px;margin-top:4px;}
+@keyframes fade-up{from{opacity:0;transform:translateY(40px);}to{opacity:1;transform:translateY(0);}}
+
+/* MARQUEE */
+.marquee{overflow:hidden;background:linear-gradient(90deg,var(--red3),var(--red),var(--red3));padding:13px 0;border-top:1px solid rgba(212,175,55,0.15);border-bottom:1px solid rgba(212,175,55,0.15);}
+.m-track{display:flex;width:max-content;animation:marquee 25s linear infinite;}
+.m-item{font-size:12px;font-weight:800;letter-spacing:5px;color:rgba(255,255,255,0.9);padding:0 28px;text-transform:uppercase;}
+.m-dot{color:var(--gold);font-size:10px;}
+@keyframes marquee{to{transform:translateX(-50%)}}
+
+/* SECTIONS */
+.section{padding:96px 40px;}
+.s-hdr{text-align:center;margin-bottom:64px;}
+.s-eye{font-size:10px;letter-spacing:7px;color:var(--red);text-transform:uppercase;margin-bottom:12px;display:block;}
+.s-title{font-size:clamp(26px,4vw,46px);font-weight:900;color:var(--white);line-height:1.2;margin-bottom:14px;}
+.s-title .acc{color:var(--red);}
+.s-desc{font-size:15px;color:var(--gray);line-height:1.9;max-width:520px;margin:0 auto;}
+.s-line{display:flex;justify-content:center;gap:6px;margin-top:20px;}
+.s-line span{height:3px;border-radius:3px;}
+.sl1{width:40px;background:var(--red);}
+.sl2{width:12px;background:var(--gold);}
+.sl3{width:6px;background:rgba(204,0,0,0.3);}
+
+/* SPORTS GRID */
+.sports-grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(200px,1fr));gap:20px;max-width:1100px;margin:0 auto;}
+.sport-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:32px 20px;text-align:center;transition:all 0.35s;cursor:default;position:relative;overflow:hidden;}
+.sport-card::before{content:'';position:absolute;inset:0;background:linear-gradient(135deg,rgba(204,0,0,0.1),transparent);opacity:0;transition:opacity 0.35s;}
+.sport-card:hover{border-color:rgba(204,0,0,0.5);transform:translateY(-8px);box-shadow:0 16px 48px rgba(204,0,0,0.12);}
+.sport-card:hover::before{opacity:1;}
+.sport-icon{font-size:48px;margin-bottom:16px;display:block;transition:transform 0.3s;}
+.sport-card:hover .sport-icon{transform:scale(1.15);}
+.sport-name{font-size:15px;font-weight:700;color:var(--white);margin-bottom:6px;}
+.sport-name-fr{font-size:11px;color:var(--red);letter-spacing:2px;text-transform:uppercase;}
+.sport-desc{font-size:12px;color:var(--gray);line-height:1.6;margin-top:8px;}
+.sport-tag{display:inline-block;font-size:10px;background:rgba(204,0,0,0.15);color:var(--red);border-radius:20px;padding:3px 12px;margin-top:10px;letter-spacing:1px;}
+
+/* SUBS */
+.subs-grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(220px,1fr));gap:20px;max-width:1100px;margin:0 auto;}
+.sub-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:14px;padding:32px 22px;position:relative;transition:all 0.4s;overflow:hidden;cursor:pointer;}
+.sub-card::before{content:'';position:absolute;top:0;inset-inline:0;height:3px;background:linear-gradient(to left,var(--red3),var(--red));opacity:0;transition:opacity 0.3s;}
+.sub-card:hover{transform:translateY(-10px);border-color:rgba(204,0,0,0.3);box-shadow:0 20px 60px rgba(204,0,0,0.12);}
+.sub-card:hover::before,.sub-card.pop::before{opacity:1;}
+.sub-card.pop{border-color:var(--red);background:linear-gradient(160deg,#1C0000,var(--dark2));}
+.pop-badge{position:absolute;top:-1px;right:50%;transform:translateX(50%);background:linear-gradient(135deg,var(--red),var(--red3));color:var(--white);font-size:11px;font-weight:700;padding:5px 16px;border-radius:0 0 10px 10px;white-space:nowrap;font-family:'Tajawal',sans-serif;}
+.sub-sport{font-size:10px;letter-spacing:4px;color:var(--red);text-transform:uppercase;margin-bottom:12px;margin-top:8px;}
+.sub-price{font-size:42px;font-weight:900;color:var(--white);line-height:1;}
+.sub-price-note{font-size:11px;color:var(--gold);margin-bottom:6px;font-weight:600;}
+.sub-period{font-size:12px;color:var(--gray);margin-bottom:20px;}
+.sub-feats{list-style:none;display:flex;flex-direction:column;gap:8px;text-align:right;margin-bottom:24px;}
+.sub-feats li{font-size:13px;color:var(--light);display:flex;align-items:center;gap:8px;}
+.chk{color:var(--red);font-weight:900;flex-shrink:0;}
+.sub-btn{width:100%;padding:12px;border-radius:8px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Tajawal',sans-serif;transition:all 0.3s;border:1px solid rgba(204,0,0,0.35);background:transparent;color:var(--white);}
+.sub-card.pop .sub-btn{background:linear-gradient(135deg,var(--red),var(--red3));border-color:var(--red);}
+.sub-btn:hover{background:linear-gradient(135deg,var(--red),var(--red3));border-color:var(--red);}
+
+/* ABOUT */
+.about-wrap{max-width:1100px;margin:0 auto;display:grid;grid-template-columns:1fr 1.3fr;gap:80px;align-items:center;}
+.about-img-wrap{position:relative;}
+.about-img{aspect-ratio:1;background:linear-gradient(160deg,#1A0000,#2E0000,#0A0000);border-radius:16px;display:flex;align-items:center;justify-content:center;border:1px solid rgba(204,0,0,0.2);overflow:hidden;position:relative;}
+.about-img-logo{width:70%;height:70%;object-fit:contain;filter:drop-shadow(0 0 30px rgba(204,0,0,0.4));animation:float 4s ease-in-out infinite;}
+@keyframes float{0%,100%{transform:translateY(0);}50%{transform:translateY(-10px);}}
+.about-year{position:absolute;bottom:-20px;left:-20px;width:100px;height:100px;background:linear-gradient(135deg,var(--red),var(--red3));border-radius:50%;display:flex;flex-direction:column;align-items:center;justify-content:center;border:4px solid var(--black);box-shadow:0 0 30px rgba(204,0,0,0.5);z-index:2;}
+.about-year .num{font-size:26px;font-weight:900;color:var(--white);line-height:1;}
+.about-year .txt{font-size:8px;color:rgba(255,255,255,0.7);letter-spacing:2px;}
+.about-text h2{font-size:clamp(22px,3vw,34px);font-weight:900;color:var(--white);line-height:1.4;margin-bottom:16px;}
+.about-text h2 .acc{color:var(--red);}
+.about-text p{font-size:14px;color:var(--gray);line-height:2;margin-bottom:28px;}
+.about-feats{display:flex;flex-direction:column;gap:14px;}
+.a-feat{display:flex;gap:14px;align-items:flex-start;padding:14px;background:var(--dark2);border:1px solid rgba(255,255,255,0.04);border-radius:10px;transition:all 0.3s;}
+.a-feat:hover{border-color:rgba(204,0,0,0.3);background:#180000;transform:translateX(-6px);}
+.a-feat-icon{width:44px;height:44px;background:rgba(204,0,0,0.12);border:1px solid rgba(204,0,0,0.2);border-radius:8px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.a-feat-body h4{font-size:14px;font-weight:700;color:var(--white);margin-bottom:3px;}
+.a-feat-body p{font-size:12px;color:var(--gray);line-height:1.6;}
+
+/* CONTACT */
+.loc-grid{display:grid;grid-template-columns:1fr 1fr;gap:40px;max-width:1100px;margin:0 auto;align-items:start;}
+.map-box{background:var(--dark2);border:1px solid rgba(204,0,0,0.2);border-radius:14px;height:380px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:16px;position:relative;overflow:hidden;}
+.map-box::before{content:'';position:absolute;inset:0;background:repeating-linear-gradient(0deg,transparent,transparent 49px,rgba(204,0,0,0.04) 49px,rgba(204,0,0,0.04) 50px),repeating-linear-gradient(90deg,transparent,transparent 49px,rgba(204,0,0,0.04) 49px,rgba(204,0,0,0.04) 50px);}
+.map-pin{font-size:52px;animation:pin-jump 2s ease-in-out infinite;}
+@keyframes pin-jump{0%,100%{transform:translateY(0);}50%{transform:translateY(-12px);}}
+.map-label{font-size:15px;font-weight:700;color:var(--white);position:relative;z-index:1;}
+.map-sub{font-size:12px;color:var(--gray);position:relative;z-index:1;text-align:center;padding:0 20px;}
+.map-cta{background:var(--red);color:var(--white);padding:12px 28px;border:none;border-radius:6px;font-size:14px;font-weight:700;cursor:pointer;font-family:'Tajawal',sans-serif;transition:all 0.3s;position:relative;z-index:1;}
+.map-cta:hover{background:var(--red2);}
+.c-cards{display:flex;flex-direction:column;gap:12px;}
+.c-card{background:var(--dark2);border:1px solid rgba(255,255,255,0.05);border-radius:12px;padding:18px 22px;display:flex;align-items:center;gap:16px;transition:all 0.3s;cursor:pointer;}
+.c-card:hover{border-color:rgba(204,0,0,0.35);transform:translateX(-6px);}
+.c-card-icon{width:48px;height:48px;background:rgba(204,0,0,0.1);border:1px solid rgba(204,0,0,0.2);border-radius:10px;display:flex;align-items:center;justify-content:center;font-size:20px;flex-shrink:0;}
+.c-card-lbl{font-size:11px;color:var(--gray);letter-spacing:2px;margin-bottom:4px;}
+.c-card-val{font-size:14px;font-weight:600;color:var(--white);}
+.soc-row{display:grid;grid-template-columns:1fr 1fr;gap:12px;margin-top:4px;}
+.soc-btn{display:flex;align-items:center;gap:10px;background:var(--dark2);border:1px solid rgba(255,255,255,0.06);border-radius:10px;padding:14px 16px;color:var(--white);font-size:13px;font-weight:700;transition:all 0.3s;cursor:pointer;text-decoration:none;}
+.soc-btn:hover{border-color:rgba(204,0,0,0.4);transform:translateY(-3px);}
+
+/* TOAST */
+.toast{position:fixed;bottom:90px;left:50%;transform:translateX(-50%) translateY(16px);background:var(--dark3);border:1px solid rgba(204,0,0,0.4);border-radius:10px;padding:14px 28px;font-size:14px;font-weight:600;color:var(--white);font-family:'Tajawal',sans-serif;opacity:0;transition:all 0.3s;z-index:9998;pointer-events:none;white-space:nowrap;}
+.toast.show{opacity:1;transform:translateX(-50%) translateY(0);}
+
+/* WA */
+.wa-btn{position:fixed;bottom:28px;left:28px;width:56px;height:56px;border-radius:50%;background:#25D366;display:flex;align-items:center;justify-content:center;font-size:26px;cursor:pointer;z-index:300;text-decoration:none;animation:wa-pulse 2.5s ease-in-out infinite;}
+@keyframes wa-pulse{0%,100%{box-shadow:0 0 0 0 rgba(37,211,102,0.5);}70%{box-shadow:0 0 0 18px rgba(37,211,102,0);}}
+
+/* FOOTER */
+footer{background:#050505;border-top:1px solid rgba(204,0,0,0.12);padding:48px 40px 24px;}
+.f-inner{max-width:1100px;margin:0 auto;}
+.f-top{display:grid;grid-template-columns:1.8fr 1fr 1fr;gap:48px;margin-bottom:40px;}
+.f-logo{display:flex;align-items:center;gap:12px;margin-bottom:16px;}
+.f-logo-icon{width:46px;height:46px;border-radius:50%;background:var(--dark2);border:2px solid rgba(204,0,0,0.3);display:flex;align-items:center;justify-content:center;font-size:20px;}
+.f-logo-text strong{font-size:14px;color:var(--white);display:block;}
+.f-logo-text span{font-size:11px;color:var(--gray);}
+.f-desc{font-size:13px;color:var(--gray);line-height:1.9;margin-bottom:18px;}
+.f-social{display:flex;gap:8px;}
+.f-soc{width:36px;height:36px;border-radius:8px;background:var(--dark2);border:1px solid rgba(255,255,255,0.06);display:flex;align-items:center;justify-content:center;font-size:15px;cursor:pointer;transition:all 0.3s;text-decoration:none;}
+.f-soc:hover{background:rgba(204,0,0,0.15);border-color:rgba(204,0,0,0.3);}
+.f-col h5{font-size:11px;font-weight:700;letter-spacing:4px;color:var(--white);margin-bottom:16px;text-transform:uppercase;}
+.f-links{list-style:none;display:flex;flex-direction:column;gap:10px;}
+.f-links a{font-size:13px;color:var(--gray);text-decoration:none;cursor:pointer;transition:color 0.2s;}
+.f-links a:hover{color:var(--red);}
+.f-bottom{display:flex;justify-content:space-between;align-items:center;padding-top:20px;border-top:1px solid rgba(255,255,255,0.05);flex-wrap:wrap;gap:12px;}
+.f-copy{font-size:12px;color:rgba(255,255,255,0.2);}
+.f-made{font-size:12px;color:rgba(255,255,255,0.15);}
+.f-made a{color:var(--red);text-decoration:none;font-weight:600;}
+.mini-footer{background:#050505;border-top:1px solid rgba(204,0,0,0.1);padding:18px 40px;display:flex;justify-content:space-between;align-items:center;flex-wrap:wrap;gap:12px;}
+
+/* MOBILE */
+@media(max-width:900px){
+  .nav-links{display:none;}.hamburger{display:flex;}
+  .about-wrap,.loc-grid,.f-top{grid-template-columns:1fr;}
+  .h-stat{padding:0 18px;}.section{padding:64px 24px;}
+  nav{padding:0 24px;}
+}
+@media(max-width:480px){
+  .sports-grid{grid-template-columns:1fr 1fr;}
+  .soc-row{grid-template-columns:1fr;}
+  .hero-btns .btn-red,.hero-btns .btn-outline{width:100%;}
+}
+</style>
+</head>
+<body>
+
+<div id="loader">
+  <div class="l-logo-wrap">
+    <div class="l-ring"></div>
+    <div class="l-logo-inner"><div class="l-logo-svg">🔥</div></div>
+  </div>
+  <div class="l-name">Association Espace Sportif · آسفي</div>
+  <div class="l-bar"><div class="l-fill"></div></div>
+</div>
+<div class="toast" id="toast"></div>
+
+<nav>
+  <div class="nav-logo" onclick="nav('home')">
+    <div class="nav-logo-icon">🔥</div>
+    <div class="logo-text">
+      <strong>Espace Sportif ACES</strong>
+      <span>جمعية الفضاء الرياضي · آسفي</span>
+    </div>
+  </div>
+  <ul class="nav-links">
+    <li><a id="nl-home" class="act" onclick="nav('home')">الرئيسية</a></li>
+    <li><a id="nl-sports" onclick="nav('sports')">الرياضات</a></li>
+    <li><a id="nl-subscriptions" onclick="nav('subscriptions')">الاشتراكات</a></li>
+    <li><a id="nl-about" onclick="nav('about')">من نحن</a></li>
+    <li><a id="nl-contact" onclick="nav('contact')">تواصل</a></li>
+  </ul>
+  <div class="nav-right">
+    <button class="btn-red" onclick="nav('subscriptions')">اشترك الآن</button>
+    <div class="hamburger" id="hamburger" onclick="toggleMenu()"><span></span><span></span><span></span></div>
+  </div>
+</nav>
+
+<div class="mob-menu" id="mobMenu">
+  <a onclick="nav('home');closeMenu()">🏠 الرئيسية</a>
+  <a onclick="nav('sports');closeMenu()">🥊 الرياضات</a>
+  <a onclick="nav('subscriptions');closeMenu()">💳 الاشتراكات</a>
+  <a onclick="nav('about');closeMenu()">ℹ️ من نحن</a>
+  <a onclick="nav('contact');closeMenu()">📞 تواصل</a>
+  <a href="https://www.instagram.com/spacesport_2024" target="_blank">📸 إنستغرام</a>
+  <a href="https://www.facebook.com/profile.php?id=61565100245834" target="_blank">👥 فيسبوك</a>
+  <a href="https://wa.me/212612433438" target="_blank">💬 واتساب</a>
+</div>
+
+<!-- HOME -->
+<div class="page active" id="page-home">
+  <section class="hero">
+    <div class="hero-bg"></div><div class="hero-grid"></div><div class="hero-glow"></div>
+    <div class="particles" id="particles"></div>
+    <div class="hero-content">
+      <div class="hero-logo">
+        <div style="width:100px;height:100px;margin:0 auto;background:var(--dark2);border-radius:50%;border:3px solid rgba(204,0,0,0.4);display:flex;align-items:center;justify-content:center;font-size:48px;box-shadow:0 0 30px rgba(204,0,0,0.4);">🔥</div>
+      </div>
+      <div class="hero-badge">🏆 منذ 2004 · آسفي المغرب · تجديد 2024</div>
+      <h1 class="hero-h1">
+        <span class="w">مكان واحد </span><span class="r">8 رياضات</span>
+        <span class="o">ASSOCIATION ESPACE SPORTIF · ACES</span>
+      </h1>
+      <p class="hero-sub">جمعية الفضاء الرياضي — أقدم المراكز الرياضية في آسفي. فنون القتال، الفيتنس، الكروسفيت وأكثر تحت سقف واحد.</p>
+      <div class="hero-btns">
+        <button class="btn-red" onclick="nav('sports')">اكتشف الرياضات</button>
+        <button class="btn-outline" onclick="nav('subscriptions')">عرض الاشتراكات</button>
+      </div>
+      <div class="hero-stats">
+        <div class="h-stat"><div class="h-num">2004</div><div class="h-lbl">سنة التأسيس</div></div>
+        <div class="h-stat"><div class="h-num">8</div><div class="h-lbl">رياضات متنوعة</div></div>
+        <div class="h-stat"><div class="h-num">4.7★</div><div class="h-lbl">تقييم Google</div></div>
+        <div class="h-stat"><div class="h-num">2024</div><div class="h-lbl">تجديد شامل</div></div>
+      </div>
+    </div>
+  </section>
+
+  <div class="marquee" aria-hidden="true">
+    <div class="m-track">
+      <span class="m-item">MUAY THAI</span><span class="m-dot">◆</span>
+      <span class="m-item">مواي طاي</span><span class="m-dot">◆</span>
+      <span class="m-item">KICK BOXING</span><span class="m-dot">◆</span>
+      <span class="m-item">CROSSFIT</span><span class="m-dot">◆</span>
+      <span class="m-item">كروسفيت</span><span class="m-dot">◆</span>
+      <span class="m-item">FITNESS</span><span class="m-dot">◆</span>
+      <span class="m-item">BODYBUILDING</span><span class="m-dot">◆</span>
+      <span class="m-item">CYCLING</span><span class="m-dot">◆</span>
+      <span class="m-item">AEROBIC</span><span class="m-dot">◆</span>
+      <span class="m-item">ACES SAFI</span><span class="m-dot">◆</span>
+      <span class="m-item">MUAY THAI</span><span class="m-dot">◆</span>
+      <span class="m-item">مواي طاي</span><span class="m-dot">◆</span>
+      <span class="m-item">KICK BOXING</span><span class="m-dot">◆</span>
+      <span class="m-item">CROSSFIT</span><span class="m-dot">◆</span>
+      <span class="m-item">كروسفيت</span><span class="m-dot">◆</span>
+      <span class="m-item">FITNESS</span><span class="m-dot">◆</span>
+      <span class="m-item">BODYBUILDING</span><span class="m-dot">◆</span>
+      <span class="m-item">CYCLING</span><span class="m-dot">◆</span>
+      <span class="m-item">AEROBIC</span><span class="m-dot">◆</span>
+      <span class="m-item">ACES SAFI</span><span class="m-dot">◆</span>
+    </div>
+  </div>
+
+  <!-- SPORTS PREVIEW -->
+  <section class="section" style="background:var(--dark);">
+    <div class="s-hdr">
+      <span class="s-eye">الرياضات المتوفرة</span>
+      <div class="s-title">8 رياضات <span class="acc">تحت سقف واحد</span></div>
+      <div class="s-line"><span class="sl1"></span><span class="sl2"></span><span class="sl3"></span></div>
+    </div>
+    <div class="sports-grid">
+      <div class="sport-card"><span class="sport-icon">🥊</span><div class="sport-name">مواي طاي</div><div class="sport-name-fr">MUAY THAI</div><div class="sport-desc">فن القتال التايلاندي — تقنيات اللكمات والركلات والمرفقين</div><span class="sport-tag">COMBAT</span></div>
+      <div class="sport-card"><span class="sport-icon">🥋</span><div class="sport-name">كيك بوكسينغ</div><div class="sport-name-fr">KICK BOXING</div><div class="sport-desc">رياضة قتالية تجمع الملاكمة مع الركلات القوية</div><span class="sport-tag">COMBAT</span></div>
+      <div class="sport-card"><span class="sport-icon">🏋️</span><div class="sport-name">فيتنس</div><div class="sport-name-fr">FITNESS</div><div class="sport-desc">تمارين لياقة متكاملة لجميع المستويات</div><span class="sport-tag">FITNESS</span></div>
+      <div class="sport-card"><span class="sport-icon">⚡</span><div class="sport-name">كروسفيت</div><div class="sport-name-fr">CROSSFIT</div><div class="sport-desc">تدريب عالي الكثافة يجمع عدة تمارين وظيفية</div><span class="sport-tag">CROSSFIT</span></div>
+      <div class="sport-card"><span class="sport-icon">🚴</span><div class="sport-name">ركوب الدراجات</div><div class="sport-name-fr">CYCLING</div><div class="sport-desc">تمارين الدراجة الثابتة لتحسين القلب والتحمل</div><span class="sport-tag">CARDIO</span></div>
+      <div class="sport-card"><span class="sport-icon">💪</span><div class="sport-name">كمال الأجسام</div><div class="sport-name-fr">BODYBUILDING</div><div class="sport-desc">بناء العضلات وتشكيل الجسم بتقنيات احترافية</div><span class="sport-tag">STRENGTH</span></div>
+      <div class="sport-card"><span class="sport-icon">🤸</span><div class="sport-name">إيروبيك</div><div class="sport-name-fr">AEROBIC</div><div class="sport-desc">تمارين إيقاعية ممتعة لحرق السعرات وتحسين المرونة</div><span class="sport-tag">CARDIO</span></div>
+      <div class="sport-card"><span class="sport-icon">🏃</span><div class="sport-name">لياقة بدنية</div><div class="sport-name-fr">PHYSICAL FITNESS</div><div class="sport-desc">برامج لياقة شاملة مخصصة للرجال</div><span class="sport-tag">FITNESS</span></div>
+    </div>
+    <div style="text-align:center;margin-top:36px;">
+      <button class="btn-outline" onclick="nav('sports')">تفاصيل الرياضات ←</button>
+    </div>
+  </section>
+
+  <!-- SUBS PREVIEW -->
+  <section class="section">
+    <div class="s-hdr">
+      <span class="s-eye">الاشتراكات</span>
+      <div class="s-title">اختر <span class="acc">باقتك</span></div>
+      <p class="s-desc">اشتراكات مرنة تناسب كل الميزانيات والرياضات</p>
+      <div class="s-line"><span class="sl1"></span><span class="sl2"></span><span class="sl3"></span></div>
+    </div>
+    <div class="subs-grid" id="home-subs"></div>
+    <div style="text-align:center;margin-top:32px;">
+      <button class="btn-outline" onclick="nav('subscriptions')">عرض جميع الباقات ←</button>
+    </div>
+  </section>
+
+  <footer>
+    <div class="f-inner">
+      <div class="f-top">
+        <div>
+          <div class="f-logo">
+            <div class="f-logo-icon">🔥</div>
+            <div class="f-logo-text"><strong>Association Espace Sportif ACES</strong><span>جمعية الفضاء الرياضي · آسفي</span></div>
+          </div>
+          <p class="f-desc">نادي عريق تأسس سنة 2004 وتم تجديده 2024. متخصص في فنون القتال والفيتنس والكروسفيت بآسفي.</p>
+          <div class="f-social">
+            <a class="f-soc" href="https://www.instagram.com/spacesport_2024" target="_blank">📸</a>
+            <a class="f-soc" href="https://www.facebook.com/profile.php?id=61565100245834" target="_blank">👥</a>
+            <a class="f-soc" href="https://wa.me/212612433438" target="_blank">💬</a>
+          </div>
+        </div>
+        <div class="f-col"><h5>الصفحات</h5><ul class="f-links">
+          <li><a onclick="nav('home')">الرئيسية</a></li>
+          <li><a onclick="nav('sports')">الرياضات</a></li>
+          <li><a onclick="nav('subscriptions')">الاشتراكات</a></li>
+          <li><a onclick="nav('about')">من نحن</a></li>
+          <li><a onclick="nav('contact')">تواصل</a></li>
+        </ul></div>
+        <div class="f-col"><h5>الرياضات</h5><ul class="f-links">
+          <li><a onclick="nav('sports')">🥊 مواي طاي</a></li>
+          <li><a onclick="nav('sports')">🥋 كيك بوكسينغ</a></li>
+          <li><a onclick="nav('sports')">⚡ كروسفيت</a></li>
+          <li><a onclick="nav('sports')">💪 كمال أجسام</a></li>
+          <li><a onclick="nav('sports')">🚴 ركوب دراجات</a></li>
+        </ul></div>
+      </div>
+      <div class="f-bottom">
+        <div class="f-copy">© 2026 Association Espace Sportif ACES — جميع الحقوق محفوظة</div>
+        <div class="f-made">Built by <a href="https://sitebladi.github.io" target="_blank">SiteBladi 🇲🇦</a></div>
+      </div>
+    </div>
+  </footer>
+</div>
+
+<!-- SPORTS PAGE -->
+<div class="page" id="page-sports">
+  <section class="section">
+    <div class="s-hdr">
+      <span class="s-eye">الرياضات المتوفرة</span>
+      <div class="s-title">8 رياضات <span class="acc">احترافية</span></div>
+      <p class="s-desc">كل رياضة بمدربين متخصصين وبرامج تناسب جميع المستويات</p>
+      <div class="s-line"><span class="sl1"></span><span class="sl2"></span><span class="sl3"></span></div>
+    </div>
+    <div class="sports-grid" style="grid-template-columns:repeat(auto-fill,minmax(240px,1fr));">
+      <div class="sport-card"><span class="sport-icon">🥊</span><div class="sport-name">مواي طاي</div><div class="sport-name-fr">MUAY THAI</div><div class="sport-desc">فن القتال التايلاندي الأصيل — يستخدم اللكمات والركلات والمرفقين والركبتين. مناسب للمبتدئين والمحترفين.</div><span class="sport-tag">COMBAT SPORT</span></div>
+      <div class="sport-card"><span class="sport-icon">🥋</span><div class="sport-name">كيك بوكسينغ</div><div class="sport-name-fr">KICK BOXING</div><div class="sport-desc">رياضة قتالية ديناميكية تجمع بين الملاكمة الكلاسيكية والركلات القوية. تحسن اللياقة والدفاع عن النفس.</div><span class="sport-tag">COMBAT SPORT</span></div>
+      <div class="sport-card"><span class="sport-icon">🏋️</span><div class="sport-name">فيتنس</div><div class="sport-name-fr">FITNESS</div><div class="sport-desc">برامج لياقة بدنية شاملة مصممة لكل المستويات — من المبتدئ إلى المتقدم.</div><span class="sport-tag">FITNESS</span></div>
+      <div class="sport-card"><span class="sport-icon">⚡</span><div class="sport-name">كروسفيت</div><div class="sport-name-fr">CROSSFIT</div><div class="sport-desc">تدريب عالي الكثافة يجمع رفع الأثقال، الجيمناستيك وتمارين القلب. يبني قوة استثنائية.</div><span class="sport-tag">HIGH INTENSITY</span></div>
+      <div class="sport-card"><span class="sport-icon">🚴</span><div class="sport-name">ركوب الدراجات</div><div class="sport-name-fr">INDOOR CYCLING</div><div class="sport-desc">حصص دراجة ثابتة مع موسيقى محفزة — تحرق الدهون وتقوي القلب بشكل فعال.</div><span class="sport-tag">CARDIO</span></div>
+      <div class="sport-card"><span class="sport-icon">💪</span><div class="sport-name">كمال الأجسام</div><div class="sport-name-fr">BODYBUILDING</div><div class="sport-desc">برامج متكاملة لبناء الكتلة العضلية وتشكيل الجسم بتقنيات احترافية ومدربين خبراء.</div><span class="sport-tag">STRENGTH</span></div>
+      <div class="sport-card"><span class="sport-icon">🤸</span><div class="sport-name">إيروبيك</div><div class="sport-name-fr">AEROBIC</div><div class="sport-desc">تمارين إيقاعية ممتعة تجمع الرقص والحركة — مثالية لحرق السعرات وتحسين المزاج.</div><span class="sport-tag">CARDIO & FUN</span></div>
+      <div class="sport-card"><span class="sport-icon">🏃</span><div class="sport-name">لياقة بدنية للرجال</div><div class="sport-name-fr">MEN'S FITNESS</div><div class="sport-desc">برامج لياقة مخصصة للرجال تشمل تمارين القوة والتحمل والمرونة.</div><span class="sport-tag">MEN ONLY</span></div>
+    </div>
+  </section>
+  <div style="background:var(--dark);border-top:1px solid rgba(255,255,255,0.03);padding:60px 40px;text-align:center;">
+    <div style="font-size:22px;font-weight:700;color:var(--white);margin-bottom:12px;">مش عارف أي رياضة تختار؟</div>
+    <div style="font-size:14px;color:var(--gray);margin-bottom:24px;">تواصل معنا وسنساعدك على اختيار الرياضة المناسبة لأهدافك</div>
+    <button class="btn-red" style="padding:14px 36px;font-size:15px;" onclick="openWA('sport')">استشارة مجانية 💬</button>
+  </div>
+  <div class="mini-footer"><div class="f-copy">© 2026 Association Espace Sportif ACES</div><div class="f-made">Built by <a href="https://sitebladi.github.io" target="_blank">SiteBladi 🇲🇦</a></div></div>
+</div>
+
+<!-- SUBSCRIPTIONS PAGE -->
+<div class="page" id="page-subscriptions">
+  <section class="section">
+    <div class="s-hdr">
+      <span class="s-eye">الأسعار والباقات</span>
+      <div class="s-title">اختر <span class="acc">باقتك</span></div>
+      <p class="s-desc">أسعار مناسبة لكل الميزانيات — تواصل معنا للتفاصيل</p>
+      <div class="s-line"><span class="sl1"></span><span class="sl2"></span><span class="sl3"></span></div>
+    </div>
+    <div class="subs-grid" id="full-subs"></div>
+    <div style="max-width:600px;margin:48px auto 0;background:linear-gradient(135deg,#150000,var(--dark2));border:1px solid rgba(204,0,0,0.2);border-radius:14px;padding:32px;text-align:center;">
+      <div style="font-size:28px;margin-bottom:12px;">📞</div>
+      <div style="font-size:17px;font-weight:700;color:var(--white);margin-bottom:8px;">للأسعار التفصيلية تواصل معنا</div>
+      <div style="font-size:13px;color:var(--gray);margin-bottom:6px;">📞 0612-433438</div>
+      <div style="font-size:13px;color:var(--gray);margin-bottom:20px;">نرد عليك في أقل من ساعة</div>
+      <button class="btn-red" style="padding:14px 36px;font-size:15px;" onclick="openWA()">واتساب 💬</button>
+    </div>
+  </section>
+  <div class="mini-footer"><div class="f-copy">© 2026 Association Espace Sportif ACES</div><div class="f-made">Built by <a href="https://sitebladi.github.io" target="_blank">SiteBladi 🇲🇦</a></div></div>
+</div>
+
+<!-- ABOUT PAGE -->
+<div class="page" id="page-about">
+  <section class="section">
+    <div class="s-hdr">
+      <span class="s-eye">من نحن</span>
+      <div class="s-title">20 سنة من <span class="acc">الشغف الرياضي</span></div>
+      <div class="s-line"><span class="sl1"></span><span class="sl2"></span><span class="sl3"></span></div>
+    </div>
+    <div class="about-wrap">
+      <div class="about-img-wrap">
+        <div class="about-img" style="height:400px;">
+          <div style="font-size:80px;filter:drop-shadow(0 0 30px rgba(204,0,0,0.5));animation:float 4s ease-in-out infinite;">🔥</div>
+        </div>
+        <div class="about-year"><div class="num">2004</div><div class="txt">SINCE</div></div>
+      </div>
+      <div class="about-text">
+        <h2>نادي عريق بـ<span class="acc">حلة جديدة</span></h2>
+        <p>جمعية الفضاء الرياضي (ACES) — نادي عريق في قلب مدينة آسفي. تأسسنا سنة 2004 وعلى مر 20 سنة ساعدنا مئات الرياضيين على تحقيق أهدافهم. في 2024 قمنا بتجديد شامل لنقدم لكم أفضل تجربة رياضية.</p>
+        <div class="about-feats">
+          <div class="a-feat"><div class="a-feat-icon">🥊</div><div class="a-feat-body"><h4>فنون القتال</h4><p>مواي طاي وكيك بوكسينغ مع مدربين متخصصين ذوي خبرة عالية</p></div></div>
+          <div class="a-feat"><div class="a-feat-icon">⚡</div><div class="a-feat-body"><h4>كروسفيت وفيتنس</h4><p>معدات حديثة وبرامج متكاملة لكل المستويات من المبتدئ للمحترف</p></div></div>
+          <div class="a-feat"><div class="a-feat-icon">🚴</div><div class="a-feat-body"><h4>كارديو وإيروبيك</h4><p>حصص جماعية ممتعة لحرق الدهون وتحسين اللياقة القلبية</p></div></div>
+          <div class="a-feat"><div class="a-feat-icon">⭐</div><div class="a-feat-body"><h4>تقييم 4.7/5 على Google</h4><p>سمعة مبنية على سنوات من الخدمة الممتازة والنتائج الحقيقية</p></div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <div class="mini-footer"><div class="f-copy">© 2026 Association Espace Sportif ACES</div><div class="f-made">Built by <a href="https://sitebladi.github.io" target="_blank">SiteBladi 🇲🇦</a></div></div>
+</div>
+
+<!-- CONTACT PAGE -->
+<div class="page" id="page-contact">
+  <section class="section">
+    <div class="s-hdr">
+      <span class="s-eye">تواصل معنا</span>
+      <div class="s-title">نحن <span class="acc">هنا لك</span></div>
+      <p class="s-desc">تواصل معنا لأي استفسار عن الرياضات أو الاشتراكات</p>
+      <div class="s-line"><span class="sl1"></span><span class="sl2"></span><span class="sl3"></span></div>
+    </div>
+    <div class="loc-grid">
+      <div class="map-box">
+        <span class="map-pin">📍</span>
+        <div class="map-label">Association Espace Sportif ACES</div>
+        <div class="map-sub">Rayhan, à côté Collège Taib ben hima<br>Rue, Safi 46000</div>
+        <button class="map-cta" onclick="openMaps()">افتح في Google Maps 🗺️</button>
+      </div>
+      <div class="c-cards">
+        <div class="c-card" onclick="openWA()"><div class="c-card-icon">💬</div><div><div class="c-card-lbl">واتساب</div><div class="c-card-val">0612-433438 · راسلنا الآن</div></div></div>
+        <div class="c-card" onclick="callPhone()"><div class="c-card-icon">📞</div><div><div class="c-card-lbl">هاتف</div><div class="c-card-val">0612-433438</div></div></div>
+        <div class="c-card" onclick="window.open('https://www.instagram.com/spacesport_2024','_blank')"><div class="c-card-icon">📸</div><div><div class="c-card-lbl">إنستغرام</div><div class="c-card-val">@spacesport_2024</div></div></div>
+        <div class="c-card" onclick="window.open('https://www.facebook.com/profile.php?id=61565100245834','_blank')"><div class="c-card-icon">👥</div><div><div class="c-card-lbl">فيسبوك</div><div class="c-card-val">Espace Sportif ACES</div></div></div>
+        <div class="c-card"><div class="c-card-icon">📍</div><div><div class="c-card-lbl">العنوان</div><div class="c-card-val">Rayhan, بجوار ثانوية الطيب بن هيمة · آسفي</div></div></div>
+        <div class="c-card"><div class="c-card-icon">🕐</div><div><div class="c-card-lbl">ساعات العمل</div><div class="c-card-val">يفتح 8:00 صباحاً · يغلق 11:00 مساءً</div></div></div>
+      </div>
+    </div>
+    <div style="max-width:1100px;margin:32px auto 0;">
+      <div class="soc-row" style="grid-template-columns:repeat(auto-fit,minmax(200px,1fr));">
+        <div class="soc-btn" onclick="window.open('https://www.instagram.com/spacesport_2024','_blank')"><span>📸</span>Instagram · @spacesport_2024</div>
+        <div class="soc-btn" onclick="window.open('https://www.facebook.com/profile.php?id=61565100245834','_blank')"><span>👥</span>Facebook · Espace Sportif ACES</div>
+        <div class="soc-btn" onclick="openWA()"><span>💬</span>WhatsApp · 0612-433438</div>
+      </div>
+    </div>
+  </section>
+  <div class="mini-footer"><div class="f-copy">© 2026 Association Espace Sportif ACES — جميع الحقوق محفوظة</div><div class="f-made">Built by <a href="https://sitebladi.github.io" target="_blank">SiteBladi 🇲🇦</a></div></div>
+</div>
+
+<a class="wa-btn" href="https://wa.me/212612433438" target="_blank" title="تواصل عبر واتساب">💬</a>
+
+<script>
+const WHATSAPP = '212612433438';
+const PHONE    = '0612433438';
+const MAPS_URL = 'https://maps.google.com/?q=Association+Espace+Sportif+ACES+Safi+Maroc';
+
+const subs = [
+  {id:'combat', sport:'فنون القتال', label:'مواي طاي · كيك بوكسينغ', pop:false,
+   feats:['دروس جماعية يومية','مدرب متخصص','معدات مجانية','شهادة مشاركة']},
+  {id:'fitness', sport:'فيتنس وكمال أجسام', label:'الأكثر طلباً ⭐', pop:true,
+   feats:['دخول غير محدود','جميع الأجهزة','برنامج تدريبي','متابعة المدرب']},
+  {id:'crossfit', sport:'كروسفيت', label:'للمستوى المتقدم', pop:false,
+   feats:['حصص يومية مكثفة','مدرب CrossFit','تتبع الأداء','مجتمع محفز']},
+  {id:'all', sport:'باقة شاملة — كل الرياضات', label:'🏆 أفضل قيمة', pop:false,
+   feats:['وصول لكل الرياضات الـ8','أولوية في الحصص','تقييم شهري','خصم خاص']},
+];
+
+function subHTML(s){
+  return `<div class="sub-card ${s.pop?'pop':''}" onclick="subscribeNow('${s.id}','${s.sport}')">
+    ${s.pop?'<div class="pop-badge">الأكثر اختياراً ⭐</div>':''}
+    <div class="sub-sport">${s.sport}</div>
+    <div style="margin:12px 0 4px;">
+      <div style="font-size:14px;color:var(--gold);font-weight:700;">${s.label}</div>
+    </div>
+    <div class="sub-price-note">📞 اتصل للسعر: 0612-433438</div>
+    <ul class="sub-feats">${s.feats.map(f=>`<li><span class="chk">✓</span>${f}</li>`).join('')}</ul>
+    <button class="sub-btn">اشترك الآن 💬</button>
+  </div>`;
+}
+
+document.getElementById('home-subs').innerHTML = subs.slice(0,3).map(subHTML).join('');
+document.getElementById('full-subs').innerHTML = subs.map(subHTML).join('');
+
+function nav(id){
+  document.querySelectorAll('.page').forEach(p=>p.classList.remove('active'));
+  const pg = document.getElementById('page-'+id);
+  if(pg) pg.classList.add('active');
+  document.querySelectorAll('.nav-links a').forEach(a=>a.classList.remove('act'));
+  const nl = document.getElementById('nl-'+id);
+  if(nl) nl.classList.add('act');
+  window.scrollTo({top:0,behavior:'smooth'});
+}
+
+function toggleMenu(){
+  document.getElementById('hamburger').classList.toggle('open');
+  document.getElementById('mobMenu').classList.toggle('open');
+}
+function closeMenu(){
+  document.getElementById('hamburger').classList.remove('open');
+  document.getElementById('mobMenu').classList.remove('open');
+}
+
+function subscribeNow(id,name){
+  const msg = `السلام عليكم، أريد الاشتراك في: ${name}.\nأرجو معرفة السعر والتفاصيل 🙏`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');
+  showToast('جاري تحويلك للواتساب ✓');
+}
+
+function openWA(type){
+  const msgs = {sport:'أريد مساعدة في اختيار الرياضة المناسبة لي.'};
+  const msg = `السلام عليكم، ${msgs[type]||'أريد الاستفسار عن النادي.'}`;
+  window.open(`https://wa.me/${WHATSAPP}?text=${encodeURIComponent(msg)}`,'_blank');
+}
+
+function callPhone(){
+  window.location.href = `tel:${PHONE}`;
+}
+
+function openMaps(){
+  window.open(MAPS_URL,'_blank');
+  showToast('جاري فتح Google Maps 🗺️');
+}
+
+function showToast(msg){
+  const t = document.getElementById('toast');
+  t.textContent = msg;
+  t.classList.add('show');
+  setTimeout(()=>t.classList.remove('show'),3000);
+}
+
+// Particles
+const pc = document.getElementById('particles');
+for(let i=0;i<16;i++){
+  const p = document.createElement('div');
+  p.className = 'particle';
+  p.style.cssText = `left:${Math.random()*100}%;animation-duration:${8+Math.random()*12}s;animation-delay:${Math.random()*8}s;`;
+  pc.appendChild(p);
+}
+
+// Loader
+setTimeout(()=>{
+  const l = document.getElementById('loader');
+  l.classList.add('hide');
+  setTimeout(()=>l.style.display='none',600);
+},1300);
+
+// Scroll reveal — fixed version using CSS class
+const revealStyle = document.createElement('style');
+revealStyle.textContent = '.revealed{animation:fade-up 0.6s ease both;}';
+document.head.appendChild(revealStyle);
+
+document.querySelectorAll('.sport-card,.sub-card,.a-feat,.c-card').forEach(el=>{
+  el.style.opacity='0';
+  new IntersectionObserver((entries,obs)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.style.opacity='1';
+        e.target.classList.add('revealed');
+        obs.unobserve(e.target);
+      }
+    });
+  },{threshold:0.1}).observe(el);
+});
+</script>
+</body>
+</html>
